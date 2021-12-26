@@ -38,4 +38,10 @@ func main() {
 	fmt.Println(c)
 	fmt.Printf("%T\n", c)
 
+	var a1 int = 1
+	var a2 int = 2
+
+	fmt.Println(a1, a2)
+	a1, a2 = a2, a1
+	fmt.Println(a1, a2)
 }
