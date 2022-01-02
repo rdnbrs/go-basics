@@ -11,5 +11,9 @@ func main() {
 
 	//directionalmain()
 
-	withfunctionmain()
+	//withfunctionmain()
+
+	//rangemain()
+
+	selectmain()
 }
