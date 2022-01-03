@@ -1,0 +1,1 @@
+2022/01/03 21:26:32 err happened open asdasd.txt: Sistem belirtilen dosyayı bulamıyor.
