@@ -1,6 +1,12 @@
 package main
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+	"log"
+)
+
+var ErrGlobal = errors.New("Global Error")
 
 func main() {
 	/*
@@ -99,6 +105,13 @@ func main() {
 	//recover
 	f()
 	fmt.Println("Returned normally from f")
+
+	fmt.Println("!!!ERRORS WITH INFO!!!")
+
+	_, err := sqrt(-10)
+	if err != nil {
+		log.Fatalln(err)
+	}
 }
 
 func c() (i int) {
@@ -125,4 +138,14 @@ func g(i int) {
 	defer fmt.Println("Defer in g", i)
 	fmt.Println("Printing in g", i)
 	g(i + 1)
+}
+
+func sqrt(i float64) (float64, error) {
+	if i < 0 {
+		//return 0, errors.New("square root of negative number")
+		//return 0, fmt.Errorf("%v", i)
+		return 0, ErrGlobal
+	}
+
+	return i * i, nil
 }
