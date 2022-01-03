@@ -1,5 +1,7 @@
 package main
 
+import "fmt"
+
 func main() {
 	/*
 		//sample 1
@@ -86,4 +88,41 @@ func main() {
 		}
 		defer f2.Close()
 	*/
+
+	//Deffer
+	var x int
+	x++
+	fmt.Println(x)
+	i := c()
+	fmt.Println(i)
+
+	//recover
+	f()
+	fmt.Println("Returned normally from f")
+}
+
+func c() (i int) {
+	defer func() { i++ }()
+	return 5
+}
+
+func f() {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("recovered in f", r)
+		}
+	}()
+	fmt.Println("Calling g")
+	g(0)
+	fmt.Println("returned normally from g")
+}
+
+func g(i int) {
+	if i > 3 {
+		fmt.Println("Panicking!")
+		panic(fmt.Sprintf("%v", i))
+	}
+	defer fmt.Println("Defer in g", i)
+	fmt.Println("Printing in g", i)
+	g(i + 1)
 }
